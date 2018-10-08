@@ -30,7 +30,7 @@ public class EmployeeController {
     @PutMapping("/employee/{employeeId}")
     public Employee updateEmployee(@PathVariable Long employeeId, @Valid @RequestBody Employee employeeRequest) {
         return employeeRepository.findById(employeeId).map(employee -> {
-            employee.setName(employeeRequest.getName());
+            employee.setNama(employeeRequest.getNama());
             employee.setHp(employeeRequest.getHp());
             employee.setEmail(employeeRequest.getEmail());
             return employeeRepository.save(employee);

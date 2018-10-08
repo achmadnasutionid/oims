@@ -21,7 +21,7 @@ public class Employee {
 
     @NotBlank
     @Size(min = 3, max = 50)
-    private String name;
+    private String nama;
 
     @Size(min = 11, max = 13)
     private String hp;
@@ -38,12 +38,12 @@ public class Employee {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNama() {
+        return nama;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     public String getHp() {
