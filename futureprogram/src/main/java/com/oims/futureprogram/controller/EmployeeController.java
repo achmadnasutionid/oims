@@ -22,6 +22,11 @@ public class EmployeeController {
         return employeeRepository.findAll(pageable);
     }
 
+    @GetMapping("/employee/{employeeId}")
+    public Employee getOneEmployee(@PathVariable Long employeeId) {
+        return employeeRepository.findById(employeeId).orElseThrow(() -> new ResourceNotFoundException("Employee not found with Id " + employeeId));
+    }
+
     @PostMapping("/employee")
     public Employee createEmployee(@Valid @RequestBody Employee employee) {
         return employeeRepository.save(employee);

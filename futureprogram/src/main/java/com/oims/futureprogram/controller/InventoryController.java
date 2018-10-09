@@ -22,6 +22,11 @@ public class InventoryController {
         return inventoryRepository.findAll(pageable);
     }
 
+    @GetMapping("/inventory/{inventoryId}")
+    public Inventory getOneInventory(@PathVariable Long inventoryId) {
+        return inventoryRepository.findById(inventoryId).orElseThrow(() -> new ResourceNotFoundException("Inventory not found with Id " + inventoryId));
+    }
+
     @PostMapping("/inventory")
     public Inventory createInventory(@Valid @RequestBody Inventory inventory) {
         return inventoryRepository.save(inventory);
