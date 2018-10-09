@@ -22,7 +22,12 @@ public class SupervisorController {
         return supervisorRepository.findAll(pageable);
     }
 
-    @PostMapping("supervisor")
+    @GetMapping("/supervisor/{supervisorId}")
+    public Supervisor getOneSupervisor(@PathVariable Long supervisorId) {
+        return supervisorRepository.findById(supervisorId).orElseThrow(() -> new ResourceNotFoundException("Supervisor not found with Id " + supervisorId));
+    }
+
+    @PostMapping("/supervisor")
     public Supervisor createSupervisor(@Valid @RequestBody Supervisor supervisor) {
         return supervisorRepository.save(supervisor);
     }
