@@ -38,5 +38,10 @@ public class SupervisorController {
     }
 
     @DeleteMapping("/supervisor/{supervisorId}")
-    public ResponseEntity<?>
+    public ResponseEntity<?> deleteSupervisor(@PathVariable Long supervisorId) {
+        return supervisorRepository.findById(supervisorId).map(supervisor -> {
+            supervisorRepository.delete(supervisor);
+            return ResponseEntity.ok().build();
+        }).orElseThrow(() ->  new ResourceNotFoundException("Supervisor not found with Id " + supervisorId));
+    }
 }
