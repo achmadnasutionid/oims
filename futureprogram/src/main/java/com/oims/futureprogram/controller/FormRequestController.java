@@ -38,9 +38,9 @@ public class FormRequestController {
     }
 
     @PostMapping("/employee/{employeeId}/formrequest")
-    public FormRequest createFormRequest(@PathVariable Long employeeId, @Valid @RequestBody FormRequest formrequest) {
-        return employeeRepository.findById(employeeId).map(employee -> {
-            formrequest.setNama();
-        })
+    public FormRequest createFormRequest(@Valid @RequestBody FormRequest formrequest) {
+        return formrequestRepository.save(formrequest);
     }
+
+
 }
