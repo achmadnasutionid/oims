@@ -7,8 +7,8 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table (name = "formrequest")
@@ -23,12 +23,11 @@ public class FormRequest {
     )
     private Long id;
 
-    @NotBlank
-    @Size(min = 3, max = 50)
-    private String nama;
-
-    @NotNull
-    private Long jumlah;
+    @OneToMany
+    @JoinColumn(name = "inventory_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private List<Inventory> inventory;
 
     @NotNull
     private Date tanggal;
@@ -49,22 +48,6 @@ public class FormRequest {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
-    public Long getJumlah() {
-        return jumlah;
-    }
-
-    public void setJumlah(Long jumlah) {
-        this.jumlah = jumlah;
     }
 
     public Date getTanggal() {
@@ -89,5 +72,13 @@ public class FormRequest {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public List<Inventory> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(List<Inventory> inventory) {
+        this.inventory = inventory;
     }
 }

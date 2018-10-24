@@ -52,8 +52,7 @@ public class FormRequestController {
             throw new ResourceNotFoundException("Employee not found with Id " + employeeId);
         }
         return formrequestRepository.findById(formrequestId).map(formRequest -> {
-            formRequest.setNama(formRequestrequest.getNama());
-            formRequest.setJumlah(formRequestrequest.getJumlah());
+            formRequest.setInventory(formRequestrequest.getInventory());
             formRequest.setTanggal(formRequestrequest.getTanggal());
             formRequest.setStatus(formRequestrequest.getStatus());
             return formrequestRepository.save(formRequest);
