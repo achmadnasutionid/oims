@@ -12,7 +12,8 @@ import java.util.List;
 
 @Entity
 @Table (name = "formrequest")
-public class FormRequest {
+public class FormRequest{
+
 
     @Id
     @GeneratedValue (generator = "formrequest_generator")
@@ -24,10 +25,7 @@ public class FormRequest {
     private Long id;
 
     @OneToMany
-    @JoinColumn(name = "inventory_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private List<Inventory> inventory;
+    private Inventory inventories;
 
     @NotNull
     private Date tanggal;
@@ -74,11 +72,12 @@ public class FormRequest {
         this.employee = employee;
     }
 
-    public List<Inventory> getInventory() {
-        return inventory;
+
+    public Inventory getInventories() {
+        return inventories;
     }
 
-    public void setInventory(List<Inventory> inventory) {
-        this.inventory = inventory;
+    public void setInventories(Inventory inventories) {
+        this.inventories = inventories;
     }
 }
