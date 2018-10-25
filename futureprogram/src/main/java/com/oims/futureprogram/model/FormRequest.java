@@ -8,7 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table (name = "formrequest")
@@ -24,8 +23,7 @@ public class FormRequest{
     )
     private Long id;
 
-    @OneToMany
-    private Inventory inventories;
+    private Inventories inventories;
 
     @NotNull
     private Date tanggal;
@@ -72,12 +70,11 @@ public class FormRequest{
         this.employee = employee;
     }
 
-
-    public Inventory getInventories() {
+    public Inventories getInventories() {
         return inventories;
     }
 
-    public void setInventories(Inventory inventories) {
+    public void setInventories(Inventories inventories) {
         this.inventories = inventories;
     }
 }
