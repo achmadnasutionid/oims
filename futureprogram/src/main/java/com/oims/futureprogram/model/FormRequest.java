@@ -23,8 +23,6 @@ public class FormRequest{
     )
     private Long id;
 
-    private Inventories inventories;
-
     @NotNull
     private Date tanggal;
 
@@ -69,12 +67,5 @@ public class FormRequest{
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-
-    public Inventories getInventories() {
-        return inventories;
-    }
-
-    public void setInventories(Inventories inventories) {
-        this.inventories = inventories;
-    }
+    
 }
