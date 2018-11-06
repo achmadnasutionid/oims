@@ -25,7 +25,7 @@ public class Inventories {
     private Long jumlah_inventory;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "employee_id", nullable = false)
+    @JoinColumn(name = "formrequest_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private FormRequest formRequest;
