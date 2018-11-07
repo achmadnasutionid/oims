@@ -39,10 +39,10 @@ public class FormRequestController {
     }
 
     @PostMapping("/employee/{employeeId}/formrequest")
-    public FormRequest createFormRequest(@Valid @RequestBody FormRequest formrequest, @PathVariable Long employeeId) {
+    public FormRequest createFormRequest(@Valid @RequestBody FormRequest formRequest, @PathVariable Long employeeId) {
         return employeeRepository.findById(employeeId).map(employee -> {
-            formrequest.setEmployee(employee);
-            return formrequestRepository.save(formrequest);
+            formRequest.setEmployee(employee);
+            return formrequestRepository.save(formRequest);
         }).orElseThrow(() -> new ResourceNotFoundException("Employee not found with Id "+employeeId));
     }
 
@@ -66,6 +66,6 @@ public class FormRequestController {
         return formrequestRepository.findById(formrequestId).map(formRequest -> {
             formrequestRepository.delete(formRequest);
             return ResponseEntity.ok().build();
-        }).orElseThrow(() -> new ResourceNotFoundException("Form Request not found with Id" + formrequestId));
+        }).orElseThrow(() -> new ResourceNotFoundException("Form Request not found with Id " + formrequestId));
     }
 }

@@ -46,19 +46,19 @@ public class Inventories {
         this.jumlah_inventory = jumlah_inventory;
     }
 
-    public FormRequest getFormRequest() {
-        return formRequest;
-    }
-
-    public void setFormRequest(FormRequest formRequest) {
-        this.formRequest = formRequest;
-    }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public FormRequest getFormRequest() {
+        return formRequest;
+    }
+
+    public void setFormRequest(FormRequest formRequest) {
+        this.formRequest = formRequest;
     }
 }
