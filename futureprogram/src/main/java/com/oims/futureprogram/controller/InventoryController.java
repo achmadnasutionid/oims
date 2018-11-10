@@ -5,7 +5,6 @@ import com.oims.futureprogram.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -37,8 +36,8 @@ public class InventoryController {
     }
 
     @DeleteMapping("inventory/{inventoryId}")
-    public ResponseEntity<?> deleteInventory(@PathVariable Long inventoryId) {
-        return inventoryService.deleteInventory(inventoryId);
+    public void deleteInventory(@PathVariable Long inventoryId) {
+        inventoryService.deleteInventory(inventoryId);
     }
 
 }
