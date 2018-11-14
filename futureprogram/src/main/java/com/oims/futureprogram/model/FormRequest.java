@@ -13,7 +13,6 @@ import java.util.Date;
 @Table (name = "formrequest")
 public class FormRequest{
 
-
     @Id
     @GeneratedValue (generator = "formrequest_generator")
     @SequenceGenerator(
