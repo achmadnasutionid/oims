@@ -31,7 +31,7 @@ public class InventoryServiceImpl implements InventoryService {
         return inventoryRepository.findById(inventoryId).map(inventory -> {
             inventory.setNama(inventoryRequest.getNama());
             inventory.setHarga(inventoryRequest.getHarga());
-            inventory.setJumlah(inventoryRequest.getJumlah());
+            inventory.setJumlah(inventory.getJumlah() + inventoryRequest.getJumlah());
             inventory.setDeskripsi(inventoryRequest.getDeskripsi());
             return inventoryRepository.save(inventory);
         }).orElseThrow(() -> new ResourceNotFoundException("Inventory not found with Id " + inventoryId));

@@ -51,9 +51,13 @@ public class FormRequestServiceImpl implements FormRequestService {
         }).orElseThrow(() -> new ResourceNotFoundException("Form Request not found with Id " + formrequestId));
     }
 
-    /*public ResponseEntity<?> deleteTodo(Long employeeId, Long formrequestId) {
-        if(!employeeRepository.existsById(employeeId)) {
+    /*public void deleteTodo(Long employeeId, Long formrequestId) {
+        if (inventory != null) {
+            inventoryRepository.delete(inventory);
+        } else if(!employeeRepository.existsById(employeeId)) {
             throw new ResourceNotFoundException("Employee not found with Id "+ employeeId);
+        } else if(!formRequestRepository.existsById(formrequestId)){
+            throw new ResourceNotFoundException("Form Request not found with Id " + formrequestId);
         }
         return formRequestRepository.findById(formrequestId).map(formRequest -> {
             formRequestRepository.delete(formRequest);
