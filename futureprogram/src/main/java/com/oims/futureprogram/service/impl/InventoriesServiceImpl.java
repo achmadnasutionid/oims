@@ -50,13 +50,16 @@ public class InventoriesServiceImpl implements InventoriesService {
         }).orElseThrow(() -> new ResourceNotFoundException("Inventories not found with Id " + inventoriestId));
     }
 
-    /*public ResponseEntity<?> deleteInventories(Long formrequestId, Long inventoriesId) {
+    public void deleteInventories(Long formrequestId, Long inventoriesId) {
         if (!formRequestRepository.existsById(formrequestId)) {
             throw new ResourceNotFoundException("Form Request not found with Id " + formrequestId);
         }
-        return inventoriesRepository.findById(inventoriesId).map(inventories -> {
+        if (!inventoriesRepository.existsById(inventoriesId)) {
+            throw new ResourceNotFoundException("Inventories not found with Id " + inventoriesId);
+        }
+        else {
+            Inventories inventories = getOneInventories(inventoriesId);
             inventoriesRepository.delete(inventories);
-            return ResponseEntity.ok().build();
-        }).orElseThrow(() -> new ResourceNotFoundException("Inventories not found with Id " + inventoriesId));
-    }*/
+        }
+    }
 }

@@ -43,8 +43,7 @@ public class InventoriesController {
         return inventoriesService.updateInventories(formrequestId, inventoriestId, inventoriesrequest);
     }
 
-    /*@DeleteMapping("/formrequest/{formrequestId}/inventories/{inventoriesId}")
-    public ResponseEntity<?> deleteInventories(@PathVariable Long formrequestId, @PathVariable Long inventoriesId) {
-        return inventoriesService.deleteInventories(formrequestId, inventoriesId);
-    }*/
+    @DeleteMapping("/formrequest/{formrequestId}/inventories/{inventoriesId}")
+    public void deleteInventories(@PathVariable Long formrequestId, @PathVariable Long inventoriesId) {
+    }
 }

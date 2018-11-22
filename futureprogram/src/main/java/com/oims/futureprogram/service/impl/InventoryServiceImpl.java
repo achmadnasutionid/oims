@@ -37,11 +37,11 @@ public class InventoryServiceImpl implements InventoryService {
         }).orElseThrow(() -> new ResourceNotFoundException("Inventory not found with Id " + inventoryId));
     }
 
-    @Override
     public void deleteInventory(Long inventoryId) {
-        Inventory inventory = getOneInventory(inventoryId);
-        if (inventory != null) {
-            inventoryRepository.delete(inventory);
+        if (!inventoryRepository.existsById(inventoryId)) {
+            throw new ResourceNotFoundException("Inventory not found with Id " + inventoryId);
         }
+        Inventory inventory = getOneInventory(inventoryId);
+        inventoryRepository.delete(inventory);
     }
 }

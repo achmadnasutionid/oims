@@ -18,5 +18,5 @@ public interface FormRequestService {
 
     FormRequest updateFormRequest(Long employeeId, Long formrequestId, FormRequest formRequestrequest);
 
-    //ResponseEntity<?> deleteTodo(Long employeeId, Long formrequestId);
+    void deleteFormRequest(Long employeeId, Long formrequestId);
 }

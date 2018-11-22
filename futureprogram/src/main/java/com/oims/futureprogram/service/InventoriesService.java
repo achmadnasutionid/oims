@@ -18,5 +18,5 @@ public interface InventoriesService {
 
     Inventories updateInventories(Long formrequestId, Long inventoriestId, Inventories inventoriesrequest);
 
-    //ResponseEntity<?> deleteInventories(Long formrequestId, Long inventoriesId);
+    void deleteInventories(Long formrequestId, Long inventoriesId);
 }

@@ -37,9 +37,10 @@ public class SupervisorServiceImpl implements SupervisorService {
     }
 
     public void deleteSupervisor(Long supervisorId) {
-        Supervisor supervisor = getOneSupervisor(supervisorId);
-        if (supervisor != null) {
-            supervisorRepository.delete(supervisor);
+        if (!supervisorRepository.existsById(supervisorId)) {
+            throw new ResourceNotFoundException("Supervisor not found with Id " + supervisorId);
         }
+        Supervisor supervisor = getOneSupervisor(supervisorId);
+        supervisorRepository.delete(supervisor);
     }
 }
