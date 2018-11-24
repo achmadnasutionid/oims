@@ -38,12 +38,18 @@ public class InventoriesController {
         return inventoriesService.createInventories(inventories, formrequestId);
     }
 
-    @PutMapping("/formrequest/{formrequestId}/invetories/{inventoriesId}")
-    public Inventories updateInventories(@PathVariable Long formrequestId, @PathVariable Long inventoriestId, @Valid @RequestBody Inventories inventoriesrequest) {
-        return inventoriesService.updateInventories(formrequestId, inventoriestId, inventoriesrequest);
+    @PutMapping("/formrequest/{formrequestId}/inventories/{inventoriesId}")
+    public Inventories updateInventories(@PathVariable Long formrequestId, @PathVariable Long inventoriesId, @Valid @RequestBody Inventories inventoriesrequest) {
+        return inventoriesService.updateInventories(formrequestId, inventoriesId, inventoriesrequest);
     }
 
     @DeleteMapping("/formrequest/{formrequestId}/inventories/{inventoriesId}")
     public void deleteInventories(@PathVariable Long formrequestId, @PathVariable Long inventoriesId) {
+        inventoriesService.deleteInventories(formrequestId, inventoriesId);
+    }
+
+    @DeleteMapping("/inventories/{inventoriesId}")
+    public void deleteOneInventories(@PathVariable Long invetoriesId) {
+        inventoriesService.deleteOneInventories(invetoriesId);
     }
 }

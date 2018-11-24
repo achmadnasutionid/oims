@@ -16,7 +16,9 @@ public interface InventoriesService {
 
     Inventories createInventories(Inventories inventories, Long formrequestId);
 
-    Inventories updateInventories(Long formrequestId, Long inventoriestId, Inventories inventoriesrequest);
+    Inventories updateInventories(Long formrequestId, Long inventoriesId, Inventories inventoriesrequest);
 
     void deleteInventories(Long formrequestId, Long inventoriesId);
+
+    void deleteOneInventories(Long inventoriesId);
 }

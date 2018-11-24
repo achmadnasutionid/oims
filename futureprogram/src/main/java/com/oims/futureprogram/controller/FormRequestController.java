@@ -44,5 +44,11 @@ public class FormRequestController {
 
     @DeleteMapping("/employee/{employeeId}/formrequest/{formrequestId}")
     public void deleteFormRequest(@PathVariable Long employeeId, @PathVariable Long formrequestId) {
+        formRequestService.deleteFormRequest(employeeId, formrequestId);
+    }
+
+    @DeleteMapping("/formrequest/{formrequestId}")
+    public void deleteOneFormRequest(@PathVariable Long formrequestId) {
+        formRequestService.deleteOneFormRequest(formrequestId);
     }
 }

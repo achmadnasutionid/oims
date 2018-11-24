@@ -39,21 +39,31 @@ public class InventoriesServiceImpl implements InventoriesService {
         }).orElseThrow(() -> new ResourceNotFoundException("Form Request not found with Id " + formrequestId));
     }
 
-    public Inventories updateInventories(Long formrequestId, Long inventoriestId, Inventories inventoriesrequest) {
+    public Inventories updateInventories(Long formrequestId, Long inventoriesId, Inventories inventoriesrequest) {
         if (!formRequestRepository.existsById(formrequestId)) {
-            throw new ResourceNotFoundException("Form Request not found witn Id " + formrequestId);
+            throw new ResourceNotFoundException("Form Request not found with Id " + formrequestId);
         }
-        return inventoriesRepository.findById(inventoriestId).map(inventories -> {
+        return inventoriesRepository.findById(inventoriesId).map(inventories -> {
             inventories.setId_inventory(inventoriesrequest.getId_inventory());
-            inventories.setJumlah_inventory(inventories.getJumlah_inventory() + inventoriesrequest.getJumlah_inventory());
+            inventories.setJumlah_inventory(inventoriesrequest.getJumlah_inventory());
             return inventoriesRepository.save(inventories);
-        }).orElseThrow(() -> new ResourceNotFoundException("Inventories not found with Id " + inventoriestId));
+        }).orElseThrow(() -> new ResourceNotFoundException("Inventories not found with Id " + inventoriesId));
     }
 
     public void deleteInventories(Long formrequestId, Long inventoriesId) {
         if (!formRequestRepository.existsById(formrequestId)) {
             throw new ResourceNotFoundException("Form Request not found with Id " + formrequestId);
         }
+        if (!inventoriesRepository.existsById(inventoriesId)) {
+            throw new ResourceNotFoundException("Inventories not found with Id " + inventoriesId);
+        }
+        else {
+            Inventories inventories = getOneInventories(inventoriesId);
+            inventoriesRepository.delete(inventories);
+        }
+    }
+
+    public void deleteOneInventories(Long inventoriesId) {
         if (!inventoriesRepository.existsById(inventoriesId)) {
             throw new ResourceNotFoundException("Inventories not found with Id " + inventoriesId);
         }

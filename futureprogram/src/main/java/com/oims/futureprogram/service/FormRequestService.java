@@ -19,4 +19,6 @@ public interface FormRequestService {
     FormRequest updateFormRequest(Long employeeId, Long formrequestId, FormRequest formRequestrequest);
 
     void deleteFormRequest(Long employeeId, Long formrequestId);
+
+    void deleteOneFormRequest(Long formrequestId);
 }

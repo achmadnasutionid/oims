@@ -63,4 +63,16 @@ public class FormRequestServiceImpl implements FormRequestService {
             formRequestRepository.delete(formRequest);
         }
     }
+
+    public void deleteOneFormRequest(Long formrequestId) {
+        if (!formRequestRepository.existsById(formrequestId)) {
+            throw new ResourceNotFoundException("Form Request not found with Id " + formrequestId);
+        }
+        else {
+            FormRequest formRequest = getOneFormRequest(formrequestId);
+            formRequestRepository.delete(formRequest);
+        }
+    }
+
+
 }
