@@ -1,29 +1,27 @@
 package com.oims.futureprogram.controller;
 
-import com.oims.futureprogram.exception.ResourceNotFoundException;
 import com.oims.futureprogram.model.Employee;
-import com.oims.futureprogram.repository.EmployeeRepository;
 import com.oims.futureprogram.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/employee")
 public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
 
     @GetMapping("/employee")
-    public Page<Employee> getEmployee(Pageable pageable) { return employeeService.getEmployee(pageable); }
+    public List<Employee> getEmployee() { return employeeService.getEmployee(); }
 
     @GetMapping("/employee/{employeeId}")
-    public Employee getOneEmployee(@PathVariable Long employeeId) {
-        return employeeService.getOneEmployee(employeeId);
+    public Optional<Employee> getEmployeeById(@PathVariable Long employeeId) {
+        return employeeService.getEmployeeById(employeeId);
     }
 
     @PostMapping("/employee")
