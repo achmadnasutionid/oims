@@ -1,18 +1,20 @@
 package com.oims.futureprogram.service;
 
 import com.oims.futureprogram.model.Supervisor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface SupervisorService {
 
-    Page<Supervisor> getSupervisor(Pageable pageable);
+    List<Supervisor> getListSupervisor();
 
-    Supervisor getOneSupervisor(Long supervisorId);
+    Optional<Supervisor> getSupervisorById(Long id);
 
     Supervisor createSupervisor(Supervisor supervisor);
 
     Supervisor updateSupervisor(Long supervisorId, Supervisor supervisorRequest);
 
     void deleteSupervisor(Long supervisorId);
+
 }

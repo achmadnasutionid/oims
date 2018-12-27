@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SupervisorRepository extends JpaRepository<Supervisor, Long> {
 
+    void deleteSupervisorById(Long id);
+
 }

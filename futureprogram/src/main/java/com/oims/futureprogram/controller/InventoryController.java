@@ -1,43 +1,45 @@
 package com.oims.futureprogram.controller;
 
 import com.oims.futureprogram.model.Inventory;
+import com.oims.futureprogram.model.Response;
 import com.oims.futureprogram.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
-public class InventoryController {
+@RequestMapping("/api")
+public class InventoryController extends GlobalController {
 
     @Autowired
     private InventoryService inventoryService;
 
     @GetMapping("/inventory")
-    public Page<Inventory> getInventory(Pageable pageable) {
-        return inventoryService.getInventory(pageable);
+    public Response<List<Inventory>> getListInventory() {
+        return toResponse(inventoryService.getListInventory());
     }
 
-    @GetMapping("/inventory/{inventoryId}")
-    public Inventory getOneInventory(@PathVariable Long inventoryId) {
-        return inventoryService.getOneInventory(inventoryId);
+    @GetMapping("/inventory/{id}")
+    public Response<Inventory> getInventoryById(@PathVariable Long id) {
+        return toResponse(inventoryService.getInventoryById(id));
     }
 
     @PostMapping("/inventory")
-    public Inventory createInventory(@Valid @RequestBody Inventory inventory) {
-        return inventoryService.createInventory(inventory);
+    public Response<Inventory> createInventory(@Valid @RequestBody Inventory inventory) {
+        return toResponse(inventoryService.createInventory(inventory));
     }
 
-    @PutMapping("inventory/{inventoryId}")
-    public Inventory updateInventory(@PathVariable Long inventoryId, @Valid @RequestBody Inventory inventoryRequest) {
-        return inventoryService.updateInventory(inventoryId, inventoryRequest);
+    @PutMapping("/inventory/{inventoryId}")
+    public Response<Inventory> updateInventory(@PathVariable Long inventoryId, @Valid @RequestBody Inventory inventoryRequest) {
+        return toResponse(inventoryService.updateInventory(inventoryId, inventoryRequest));
     }
 
-    @DeleteMapping("inventory/{inventoryId}")
+    @DeleteMapping("/inventory/{inventoryId}")
+    @Transactional
     public void deleteInventory(@PathVariable Long inventoryId) {
         inventoryService.deleteInventory(inventoryId);
     }
-
 }

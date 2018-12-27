@@ -1,42 +1,46 @@
 package com.oims.futureprogram.controller;
 
+import com.oims.futureprogram.model.Response;
 import com.oims.futureprogram.model.Supervisor;
 import com.oims.futureprogram.service.SupervisorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
-public class SupervisorController {
+@RequestMapping("/api")
+public class SupervisorController extends GlobalController {
 
     @Autowired
     private SupervisorService supervisorService;
 
     @GetMapping("/supervisor")
-    public Page<Supervisor> getSupervisor(Pageable pageable) {
-        return supervisorService.getSupervisor(pageable);
+    public Response<List<Supervisor>> getListSupervisor() {
+        return toResponse(supervisorService.getListSupervisor());
     }
 
-    @GetMapping("/supervisor/{supervisorId}")
-    public Supervisor getOneSupervisor(@PathVariable Long supervisorId) {
-        return supervisorService.getOneSupervisor(supervisorId);
+    @GetMapping("/supervisor/{id}")
+    public Response<Supervisor> getSupervisorById(@PathVariable Long id) {
+        return toResponse(supervisorService.getSupervisorById(id));
     }
 
     @PostMapping("/supervisor")
-    public Supervisor createSupervisor(@Valid @RequestBody Supervisor supervisor) {
-        return supervisorService.createSupervisor(supervisor);
+    public Response<Supervisor> createSupervisor(@Valid @RequestBody Supervisor supervisor) {
+        return toResponse(supervisorService.createSupervisor(supervisor));
     }
 
     @PutMapping("/supervisor/{supervisorId}")
-    public Supervisor updateSupervisor(@PathVariable Long supervisorId, @Valid @RequestBody Supervisor supervisorRequest) {
-        return supervisorService.updateSupervisor(supervisorId, supervisorRequest);
+    public Response<Supervisor> updateSupervisor(@PathVariable Long supervisorId, @Valid @RequestBody Supervisor supervisorRequest) {
+        return toResponse(supervisorService.updateSupervisor(supervisorId, supervisorRequest));
     }
 
     @DeleteMapping("/supervisor/{supervisorId}")
+    @Transactional
     public void deleteSupervisor(@PathVariable Long supervisorId) {
         supervisorService.deleteSupervisor(supervisorId);
     }
+
 }

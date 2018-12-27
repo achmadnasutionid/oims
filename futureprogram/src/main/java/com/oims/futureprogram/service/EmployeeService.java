@@ -9,9 +9,9 @@ import java.util.Optional;
 
 public interface EmployeeService {
 
-    List<Employee> getEmployee();
+    List<Employee> getListEmployee();
 
-    Optional<Employee> getEmployeeById(Long employeeId);
+    Optional<Employee> getEmployeeById(Long id);
 
     Employee createEmployee(Employee employee);
 

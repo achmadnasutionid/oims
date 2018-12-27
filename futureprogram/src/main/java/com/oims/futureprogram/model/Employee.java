@@ -1,12 +1,20 @@
 package com.oims.futureprogram.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "employee")
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 
 public class Employee {
 
@@ -29,36 +37,4 @@ public class Employee {
     @Email
     private String email;
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
-    public String getHp() {
-        return hp;
-    }
-
-    public void setHp(String hp) {
-        this.hp = hp;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

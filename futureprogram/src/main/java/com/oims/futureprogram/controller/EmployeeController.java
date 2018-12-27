@@ -1,39 +1,42 @@
 package com.oims.futureprogram.controller;
 
+import com.oims.futureprogram.model.Response;
 import com.oims.futureprogram.model.Employee;
 import com.oims.futureprogram.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/employee")
-public class EmployeeController {
+@RequestMapping("/api")
+public class EmployeeController extends GlobalController {
 
     @Autowired
     private EmployeeService employeeService;
 
     @GetMapping("/employee")
-    public List<Employee> getEmployee() { return employeeService.getEmployee(); }
+    public Response<List<Employee>> getListEmployee() { return toResponse(employeeService.getListEmployee()); }
 
-    @GetMapping("/employee/{employeeId}")
-    public Optional<Employee> getEmployeeById(@PathVariable Long employeeId) {
-        return employeeService.getEmployeeById(employeeId);
+    @GetMapping("/employee/{id}")
+    public Response<Employee> getEmployeeById(@PathVariable Long id) {
+        return toResponse(employeeService.getEmployeeById(id));
     }
 
     @PostMapping("/employee")
-    public Employee createEmployee(@Valid @RequestBody Employee employee) { return employeeService.createEmployee(employee); }
+    public Response<Employee> createEmployee(@Valid @RequestBody Employee employee) { return toResponse(employeeService.createEmployee(employee)); }
 
     @PutMapping("/employee/{employeeId}")
-    public Employee updateEmployee(@PathVariable Long employeeId, @Valid @RequestBody Employee employeeRequest) {
-        return employeeService.updateEmployee(employeeId, employeeRequest);
+    public Response<Employee> updateEmployee(@PathVariable Long employeeId, @Valid @RequestBody Employee employeeRequest) {
+        return toResponse(employeeService.updateEmployee(employeeId, employeeRequest));
     }
 
     @DeleteMapping("/employee/{employeeId}")
+    @Transactional
     public void deleteEmployee(@PathVariable Long employeeId) {
         employeeService.deleteEmployee(employeeId);
     }
+
 }
