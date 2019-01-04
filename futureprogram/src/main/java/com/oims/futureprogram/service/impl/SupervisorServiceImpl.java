@@ -25,7 +25,7 @@ public class SupervisorServiceImpl implements SupervisorService {
     @Override
     public Optional<Supervisor> getSupervisorById(Long id) {
         if(!supervisorRepository.existsById(id)) {
-            throw  new ResourceNotFoundException(ErrorCode.NOT_FOUND.getCode(), ErrorCode.NOT_FOUND.getMessage());
+            throw new ResourceNotFoundException(ErrorCode.NOT_FOUND.getCode(), ErrorCode.NOT_FOUND.getMessage());
         }
         return supervisorRepository.findById(id);
     }
@@ -50,6 +50,6 @@ public class SupervisorServiceImpl implements SupervisorService {
         if(!supervisorRepository.existsById(supervisorId)) {
             throw new ResourceNotFoundException(ErrorCode.NOT_FOUND.getCode(), ErrorCode.NOT_FOUND.getMessage());
         }
-        supervisorRepository.deleteById(supervisorId);
+        supervisorRepository.deleteSupervisorById(supervisorId);
     }
 }
